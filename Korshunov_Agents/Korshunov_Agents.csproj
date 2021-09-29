@@ -82,10 +82,20 @@
     <Compile Include="MaterialType.cs">
       <DependentUpon>ModelAgents.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelAgents.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgents.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelAgents.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelAgents.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAgents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgents.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\AgentType.cs" />
     <Compile Include="Model\DB.cs" />
@@ -128,16 +138,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelAgents.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelAgents.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelAgents.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelAgents.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AgentsPage.xaml.cs">
       <DependentUpon>AgentsPage.xaml</DependentUpon>
     </Compile>
@@ -314,19 +314,19 @@
     <Resource Include="Agents\picture.png" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ModelAgents.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelAgents.Context.cs</LastGenOutput>
       <DependentUpon>ModelAgents.edmx</DependentUpon>
+      <LastGenOutput>ModelAgents.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ModelAgents.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelAgents.edmx</DependentUpon>
       <LastGenOutput>ModelAgents.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

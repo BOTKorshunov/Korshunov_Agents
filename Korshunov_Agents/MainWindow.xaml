@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Korshunov_Agents"
         mc:Ignorable="d"
         Title="Попрыженок" Style="{StaticResource windowStyle}"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>

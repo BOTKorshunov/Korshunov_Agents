@@ -23,66 +23,58 @@ namespace Korshunov_Agents.Pages
     {
         private void FindAgents()
         {
-            lbAgents.ItemsSource = DB.db.Agent.Where(x => x.Title.StartsWith(tbFinder.Text)).ToList();
-        }
+            spPageNumbers.Children.Clear();
 
+            List<Agent> agents = DB.db.Agent.Where(x => x.Title.StartsWith(tbFinder.Text)).ToList();
 
-        private void FilterAgents()
-        {
+            switch (cbSort.SelectedIndex)
+            {
+                case 0:; break;
+                case 1: agents = agents.OrderBy(x => x.Title).ToList(); break;
+                case 2: agents = agents.OrderByDescending(x => x.Title).ToList(); break;
+            }
+
             if (cbFilter.SelectedIndex > 0)
             {
                 string agentType = cbFilter.SelectedItem.ToString();
-                lbAgents.ItemsSource = DB.db.Agent.Where(x => x.AgentType.Title == agentType).ToList();
+                agents = agents.Where(x => x.AgentType.Title == agentType).ToList();
             }
-        }
 
-        private void SortAgents()
-        {
-            switch (cbSort.SelectedIndex)
-            {
-                case 1: lbAgents.ItemsSource = DB.db.Agent.OrderBy(x => x.Title).ToList(); break;
-                case 2: lbAgents.ItemsSource = DB.db.Agent.OrderByDescending(x => x.Title).ToList(); break;
-            }
+            lbAgents.ItemsSource = agents;
         }
 
         public AgentsPage()
         {
             InitializeComponent();
 
-            FindAgents();
-
-            cbFilter.Items.Add("Сортировка");
-            cbFilter.Items.Add("От А до Я");
-            cbFilter.Items.Add("От Я до А");
-            cbFilter.SelectedIndex = 0;
-
-            cbSort.Items.Add("Фильтрация");
+            cbFilter.Items.Add("Фильтрация");
             foreach (var agentType in DB.db.AgentType)
             {
-                cbSort.Items.Add(agentType.Title);
+                cbFilter.Items.Add(agentType.Title);
             }
+            cbFilter.SelectedIndex = 0;
+
+            cbSort.Items.Add("Сортировка");
+            cbSort.Items.Add("От А до Я");
+            cbSort.Items.Add("От Я до А");
             cbSort.SelectedIndex = 0;
+
+            FindAgents();
         }
 
         private void tbFinder_TextChanged(object sender, TextChangedEventArgs e)
         {
             FindAgents();
-            FilterAgents();
-            SortAgents();
         }
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FindAgents();
-            FilterAgents();
-            SortAgents();
         }
 
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FindAgents();
-            FilterAgents();
-            SortAgents();
         }
     }
 }
