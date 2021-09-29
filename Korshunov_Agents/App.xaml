@@ -1,0 +1,26 @@
+﻿<Application x:Class="Korshunov_Agents.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Korshunov_Agents"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="windowStyle" TargetType="Window">
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="Height" Value="450"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Icon" Value="Images/Попрыженок.ico"/>
+        </Style>
+
+        <Style x:Key="pageStyle" TargetType="Page">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        </Style>
+
+        <Style x:Key="mainColorBackground">
+            <Setter Property="ItemsControl.Background" Value="White"/>
+        </Style>
+
+        <Style x:Key="secondColorBackground">
+            <Setter Property="ItemsControl.Background" Value="#F9969E"/>
+        </Style>
+    </Application.Resources>
+</Application>
