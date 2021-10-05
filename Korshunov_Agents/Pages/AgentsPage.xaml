@@ -38,7 +38,7 @@
                                         <ColumnDefinition Width="100"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Name="imgLogo" Source="{Binding Logo}"/>
+                                    <Image Name="imgLogo" Source="{Binding CorrectLogo}"/>
 
                                     <Rectangle Grid.Column="1" Fill="Black"/>
 
