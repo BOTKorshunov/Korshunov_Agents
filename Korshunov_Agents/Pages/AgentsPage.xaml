@@ -5,8 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Korshunov_Agents.Pages"
       mc:Ignorable="d" 
+      d:DesignWidth="800"
+      d:DesignHeight="450"
       Style="{StaticResource pageStyle}"
       Title="AgentsPage">
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
 
     <Border Padding="10" Style="{StaticResource mainColorBackground}">
         <Grid>
@@ -16,61 +28,64 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center"
-                        Height="40">
-                <TextBox Name="tbFinder" Width="300" Margin="0, 0, 10, 0" BorderBrush="Black"
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Name="tbFinder" BorderBrush="Black" Margin="10, 0, 10, 0"
                          TextChanged="tbFinder_TextChanged"/>
-                <ComboBox Name="cbSort" Width="200" Margin="0, 0, 10, 0" SelectionChanged="cbSort_SelectionChanged"/>
-                <ComboBox Name="cbFilter" Width="200" Margin="0, 0, 10, 0" SelectionChanged="cbFilter_SelectionChanged"/>
-            </StackPanel>
+                <ComboBox Grid.Column="1" Name="cbSort" Margin="10, 0, 10, 0"
+                          SelectionChanged="cbSort_SelectionChanged"/>
+                <ComboBox Grid.Column="2" Name="cbFilter" Margin="10, 0, 10, 0"
+                          SelectionChanged="cbFilter_SelectionChanged"/>
+            </Grid>
 
-            <ListBox Grid.Row="1" Name="lbAgents" HorizontalContentAlignment="Center">
+            <ListBox Grid.Row="1" Name="lbAgents" HorizontalContentAlignment="Center" Margin="10">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <Border BorderBrush="Black" BorderThickness="2" Margin="0, 10, 0, 10"
-                                    Height="100" Width="700">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="2"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="100"/>
-                                    </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
 
-                                    <Image Name="imgLogo" Source="{Binding CorrectLogo}"/>
+                            <Image Name="imgLogo" Source="{Binding CorrectLogo}"/>
 
-                                    <Rectangle Grid.Column="1" Fill="Black"/>
+                            <Rectangle Grid.Column="1" Fill="Black"/>
 
-                                    <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="10, 0, 0, 0">
-                                        <TextBlock Margin="0, 3, 0, 3">
+                            <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="10, 0, 0, 0">
+                                <TextBlock Margin="0, 3, 0, 3">
                                             <Run Text="{Binding AgentType.Title}"/>
                                             <Run Text=" | "/>
                                             <Run Text="{Binding Title}"/>
-                                        </TextBlock>
-                                        <TextBlock Text="10 продаж за год" Margin="0, 3, 0, 3"/>
-                                        <TextBlock Text="{Binding Phone}" Margin="0, 3, 0, 3"/>
-                                        <TextBlock Margin="0, 3, 0, 3">
+                                </TextBlock>
+                                <TextBlock Text="10 продаж за год" Margin="0, 3, 0, 3"/>
+                                <TextBlock Text="{Binding Phone}" Margin="0, 3, 0, 3"/>
+                                <TextBlock Margin="0, 3, 0, 3">
                                         <Run Text="Приоритетность:"/>
                                         <Run Text="{Binding Priority}"/>
-                                        </TextBlock>
-                                    </StackPanel>
+                                </TextBlock>
+                            </StackPanel>
 
-                                    <Label Grid.Column="3" Content="10%" HorizontalAlignment="Center" VerticalAlignment="Center"
+                            <Label Grid.Column="3" Content="10%" HorizontalAlignment="Center" VerticalAlignment="Center"
                            FontSize="20" FontWeight="Bold"/>
-                                </Grid>
-                            </Border>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Margin="5, 0, 5, 0" Text="&lt;"/>
-                <StackPanel Orientation="Horizontal" Name="spPageNumbers"/>
-                <TextBlock Margin="5, 0, 5, 0" Text=">"/>
-            </StackPanel>
         </Grid>
     </Border>
-
 </Page>

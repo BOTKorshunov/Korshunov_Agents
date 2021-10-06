@@ -23,8 +23,6 @@ namespace Korshunov_Agents.Pages
     {
         private void FindAgents()
         {
-            spPageNumbers.Children.Clear();
-
             List<Agent> agents = DB.db.Agent.Where(x => x.Title.StartsWith(tbFinder.Text)).ToList();
 
             switch (cbSort.SelectedIndex)
