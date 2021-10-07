@@ -86,6 +86,8 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Name="spPageSwitcher"/>
         </Grid>
     </Border>
 </Page>
