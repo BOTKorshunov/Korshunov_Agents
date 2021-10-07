@@ -43,7 +43,7 @@ namespace Korshunov_Agents.Pages
 
             pageSwitcher = new PageSwitcher(lbAgents, agents);
             spPageSwitcher.Children.Clear();
-            spPageSwitcher.Children.Add(pageSwitcher.spPageSwitcher);
+            spPageSwitcher.Children.Add(pageSwitcher.gPageSwitcher);
         }
 
         public AgentsPage()
@@ -85,12 +85,14 @@ namespace Korshunov_Agents.Pages
     {
         private int currentPage = 1;
         private int countPages = 1;
-        private const int countElementsOnPage = 10;
+        private const int countElementsOnPage = 5;
+        private const int countPagesOnSwitcher = 5;
 
         private ListBox listBox = new ListBox();
         private List<Agent> agents = new List<Agent>();
 
-        public StackPanel spPageSwitcher = new StackPanel();
+        private StackPanel spPageSwitcher = new StackPanel();
+        public Grid gPageSwitcher = new Grid();
 
         public PageSwitcher(ListBox listBox, List<Agent> agents)
         {
@@ -99,61 +101,80 @@ namespace Korshunov_Agents.Pages
 
             for (int i = 0; i < this.agents.Count; i++)
             {
-                if (i % 10 == 0 && i != 0)
+                if (i % countElementsOnPage == 0 && i != 0)
                 {
                     countPages++;
                 }
             }
 
             spPageSwitcher.Orientation = Orientation.Horizontal;
+            spPageSwitcher.HorizontalAlignment = HorizontalAlignment.Center;
+            Grid.SetColumn(spPageSwitcher, 1);
+
+            gPageSwitcher.ColumnDefinitions.Add(new ColumnDefinition());
+            gPageSwitcher.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
+            gPageSwitcher.ColumnDefinitions.Add(new ColumnDefinition());
+
             CreatePages();
+            ShowAgentsOnPage();
+        }
+
+        private void CreatePage(int i)
+        {
+            Label lbPage = new Label();
+            lbPage.Content = i;
+            lbPage.MouseLeftButtonDown += LbPage_MouseLeftButtonDown;
+
+            if (i == currentPage)
+            {
+                lbPage.Foreground = Brushes.Red;
+            }
+            spPageSwitcher.Children.Add(lbPage);
         }
 
         private void CreatePages()
         {
+            gPageSwitcher.Children.Clear();
             spPageSwitcher.Children.Clear();
             Label lbBack = new Label();
             lbBack.Content = "<";
             lbBack.MouseLeftButtonDown += LbBack_MouseLeftButtonDown;
+            Grid.SetColumn(lbBack, 0);
+            gPageSwitcher.Children.Add(lbBack);
 
             Label lbNext = new Label();
             lbNext.Content = ">";
             lbNext.MouseLeftButtonDown += LbNext_MouseLeftButtonDown;
+            Grid.SetColumn(lbNext, 2);
+            gPageSwitcher.Children.Add(lbNext);
 
-            spPageSwitcher.Children.Add(lbBack);
-
-            if (currentPage < countPages - 5)
+            if (currentPage < countPagesOnSwitcher)
             {
-                for (int i = currentPage; i < currentPage + 5; i++)
+                for (int i = 1; i <= countPagesOnSwitcher; i++)
                 {
-                    Label lbPage = new Label();
-                    lbPage.Content = i;
-                    lbPage.MouseLeftButtonDown += LbPage_MouseLeftButtonDown;
-
-                    if (i == currentPage)
+                    if (i > countPages)
                     {
-                        lbPage.Foreground = Brushes.Red;
+                        break;
                     }
-                    spPageSwitcher.Children.Add(lbPage);
+                    CreatePage(i);
                 }
             }
-            else
+            else if (currentPage <= countPages - countPagesOnSwitcher)
             {
-                for (int i = countPages - 5; i < countPages; i++)
+                for (int i = currentPage; i < currentPage + countPagesOnSwitcher; i++)
                 {
-                    Label lbPage = new Label();
-                    lbPage.Content = i;
-                    lbPage.MouseLeftButtonDown += LbPage_MouseLeftButtonDown;
-
-                    if (i == currentPage)
-                    {
-                        lbPage.Foreground = Brushes.Red;
-                    }
-                    spPageSwitcher.Children.Add(lbPage);
+                    CreatePage(i);
+                }
+            }
+            else if (currentPage > countPages - countPagesOnSwitcher)
+            {
+                for (int i = countPages - countPagesOnSwitcher + 1; i <= countPages; i++)
+                {
+                    CreatePage(i);
                 }
             }
 
-            spPageSwitcher.Children.Add(lbNext);
+            gPageSwitcher.Children.Add(spPageSwitcher);
         }
 
         private void ShowAgentsOnPage()
@@ -162,6 +183,10 @@ namespace Korshunov_Agents.Pages
             for (int i = currentPage * countElementsOnPage - countElementsOnPage;
                 i < currentPage * countElementsOnPage; i++)
             {
+                if (i >= agents.Count())
+                {
+                    break;
+                }
                 newAgents.Add(agents[i]);
             }
             listBox.ItemsSource = newAgents;
