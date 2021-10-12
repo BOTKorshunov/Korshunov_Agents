@@ -79,6 +79,11 @@ namespace Korshunov_Agents.Pages
         {
             FindAgents();
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            MainVariables.NavigateFMain(new AgentAddPage(new Agent()));
+        }
     }
 
     public class PageSwitcher
@@ -99,24 +104,36 @@ namespace Korshunov_Agents.Pages
             this.agents = agents;
             this.listBox = listBox;
 
-            for (int i = 0; i < this.agents.Count; i++)
+            ConsiderCountPage();
+            CreateSpPageSwitcher();
+            CreateGridPageSwitcher();
+            CreatePages();
+            ShowAgentsOnPage();
+        }
+
+        private void ConsiderCountPage()
+        {
+            for (int i = 0; i < agents.Count; i++)
             {
                 if (i % countElementsOnPage == 0 && i != 0)
                 {
                     countPages++;
                 }
             }
+        }
 
+        private void CreateSpPageSwitcher()
+        {
             spPageSwitcher.Orientation = Orientation.Horizontal;
             spPageSwitcher.HorizontalAlignment = HorizontalAlignment.Center;
             Grid.SetColumn(spPageSwitcher, 1);
+        }
 
+        private void CreateGridPageSwitcher()
+        {
             gPageSwitcher.ColumnDefinitions.Add(new ColumnDefinition());
             gPageSwitcher.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
             gPageSwitcher.ColumnDefinitions.Add(new ColumnDefinition());
-
-            CreatePages();
-            ShowAgentsOnPage();
         }
 
         private void CreatePage(int i)

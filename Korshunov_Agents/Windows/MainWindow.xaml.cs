@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Korshunov_Agents
+namespace Korshunov_Agents.Windows
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -24,7 +24,8 @@ namespace Korshunov_Agents
         public MainWindow()
         {
             InitializeComponent();
-            fMain.Navigate(new AgentsPage());
+            new MainVariables(this, fMain);
+            MainVariables.NavigateFMain(new AgentsPage());
         }
     }
 }

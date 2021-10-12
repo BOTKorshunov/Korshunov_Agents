@@ -1,0 +1,153 @@
+﻿<Page x:Class="Korshunov_Agents.Pages.AgentAddPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Korshunov_Agents.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Style="{StaticResource pageStyle}"
+      Title="AgentAddPage">
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="30"/>
+        </Style>
+        <Style x:Key="spAgentData" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Margin" Value="5, 0, 5, 0"/>
+        </Style>
+        <Style x:Key="gAgentData" TargetType="Grid">
+            <Setter Property="Margin" Value="0, 0, 0, 10"/>
+        </Style>
+    </Page.Resources>
+
+    <Border Style="{StaticResource mainColorBackground}" Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Border BorderBrush="Black" BorderThickness="2"
+                             Margin="0, 0, 0, 10" Padding="5">
+                        <Image Height="200" Name="imgLogo"/>
+                    </Border>
+                    <Button Content="Изменить картинку" Height="30"
+                            Style="{StaticResource secondColorBackground}"
+                            Name="btnChangeImage" Click="btnChangeImage_Click"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10, 0, 0, 0">
+                    <Grid Style="{StaticResource gAgentData}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Style="{StaticResource spAgentData}">
+                            <TextBlock Text="Название компании:"/>
+                            <TextBox/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Style="{StaticResource spAgentData}">
+                            <TextBlock Text="Тип компании:"/>
+                            <ComboBox/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Style="{StaticResource gAgentData}">
+                        <StackPanel Style="{StaticResource spAgentData}">
+                            <TextBlock Text="Адрес:"/>
+                            <TextBox/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Style="{StaticResource gAgentData}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Style="{StaticResource spAgentData}">
+                            <TextBlock Text="ИНН:"/>
+                            <TextBox/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Style="{StaticResource spAgentData}">
+                            <TextBlock Text="КПП:"/>
+                            <TextBox/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Style="{StaticResource gAgentData}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Style="{StaticResource spAgentData}">
+                            <TextBlock Text="ФИО директора:"/>
+                            <TextBox/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Style="{StaticResource spAgentData}">
+                            <TextBlock Text="Телефон:"/>
+                            <TextBox/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Style="{StaticResource gAgentData}">
+                        <StackPanel Style="{StaticResource spAgentData}">
+                            <TextBlock Text="E-mail:"/>
+                            <TextBox/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Style="{StaticResource gAgentData}">
+                        <StackPanel Style="{StaticResource spAgentData}">
+                            <TextBlock Text="Приоритетность:"/>
+                            <TextBox/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+
+            <Grid Grid.Row="2" Style="{StaticResource thirdColorBackground}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="&lt; Назад" FontSize="20"
+                        Style="{StaticResource secondColorBackground}"
+                        Name="btnBack" Click="btnBack_Click"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                            HorizontalAlignment="Center" Margin="0, 15, 0, 15">
+                    <Image Source="../Images/Попрыженок.png" Margin="0, 0, 10, 0"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20"
+                                   FontWeight="Bold">
+                            <Run Text="Добавить"/>
+                            <LineBreak/>
+                            <Run Text="компанию"/>
+                    </TextBlock>
+                </StackPanel>
+                
+                <Button Grid.Column="2" Content="Добавить >" FontSize="20"
+                        Style="{StaticResource secondColorBackground}"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

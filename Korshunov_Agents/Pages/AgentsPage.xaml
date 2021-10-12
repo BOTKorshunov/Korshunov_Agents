@@ -18,6 +18,9 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource secondColorBackground}">
+            <Setter Property="Margin" Value="0, 0, 10, 0"/>
+        </Style>
     </Page.Resources>
 
     <Border Padding="10" Style="{StaticResource mainColorBackground}">
@@ -87,7 +90,28 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Name="spPageSwitcher"/>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Content="Добавить" Name="btnAdd"
+                            Click="btnAdd_Click"/>
+                    <Button Grid.Column="1" Content="Изменить"/>
+                    <Button Grid.Column="2" Content="Удалить"/>
+                </Grid>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" 
+                        HorizontalAlignment="Right" Name="spPageSwitcher"/>
+            </Grid>
         </Grid>
     </Border>
 </Page>
