@@ -61,8 +61,6 @@ namespace Korshunov_Agents.Pages
             cbSort.Items.Add("От А до Я");
             cbSort.Items.Add("От Я до А");
             cbSort.SelectedIndex = 0;
-
-            FindAgents();
         }
 
         private void tbFinder_TextChanged(object sender, TextChangedEventArgs e)
@@ -83,6 +81,11 @@ namespace Korshunov_Agents.Pages
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             MainVariables.NavigateFMain(new AgentAddPage(new Agent()));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            FindAgents();
         }
     }
 

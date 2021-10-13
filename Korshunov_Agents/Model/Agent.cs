@@ -14,7 +14,7 @@ namespace Korshunov_Agents
             {
                 if (String.IsNullOrEmpty(Logo) || String.IsNullOrWhiteSpace(Logo))
                 {
-                    return @"\Agents\picture.png";
+                    return @"..\..\Agents\picture.png";
                 }
                 else
                 {

@@ -1,4 +1,5 @@
-﻿using Korshunov_Agents.Windows;
+﻿using Korshunov_Agents.Model;
+using Korshunov_Agents.Windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,18 +31,33 @@ namespace Korshunov_Agents.Pages
             InitializeComponent();
 
             this.agent = agent;
+
+            cbType.ItemsSource = DB.db.AgentType.ToList();
             CheckAgent();
         }
 
         private void CheckAgent()
         {
-            if (agent.ID == 0)
+            imgLogo.Source = new BitmapImage(new Uri(agent.CorrectLogo, 
+                UriKind.Relative));
+            tbTitle.Text = agent.Title;
+            tbAddress.Text = agent.Address;
+            tbINN.Text = agent.INN;
+            tbKPP.Text = agent.KPP;
+            tbDirectorName.Text = agent.DirectorName;
+            tbPhone.Text = agent.Phone;
+            tbEmail.Text = agent.Email;
+            tbPriority.Text = agent.Priority.ToString();
+
+            if (agent.AgentType == null)
             {
-                string correctSource = @"..\..\Agents\picture.png";
-                imgLogo.Source = new BitmapImage(new Uri(correctSource, 
-                    UriKind.Relative));
-                imageSources = new ImageSources(imgLogo, correctSource);
+                cbType.SelectedIndex = 0;
             }
+            else
+            {
+                cbType.SelectedItem = agent.AgentType;
+            }
+            imageSources = new ImageSources(imgLogo, agent.CorrectLogo);
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -56,8 +72,31 @@ namespace Korshunov_Agents.Pages
             if (selectImageWindow.ShowDialog() == true)
             {
                 imageSources = selectImageWindow.mainImageSources;
-                imgLogo.Source = new BitmapImage(new Uri(imageSources.correctSource, UriKind.Relative));
+                FileInfo fileInfo = new FileInfo(imageSources.correctSource);
+                imgLogo.Source = new BitmapImage(new Uri(fileInfo.FullName));
             }
+        }
+
+        private void btnAddAgent_Click(object sender, RoutedEventArgs e)
+        {
+            agent.Title = tbTitle.Text;
+            agent.Logo = imageSources.correctSource;
+            agent.AgentType = (AgentType)cbType.SelectedItem;
+            agent.Address = tbAddress.Text;
+            agent.INN = tbINN.Text;
+            agent.KPP = tbKPP.Text;
+            agent.DirectorName = tbDirectorName.Text;
+            agent.Phone = tbPhone.Text;
+            agent.Email = tbEmail.Text;
+            agent.Priority = int.Parse(tbPriority.Text);
+            
+            if (agent.ID == 0)
+            {
+                DB.db.Agent.Add(agent);
+            }
+            DB.db.SaveChanges();
+
+            MainVariables.GoBackFMain();
         }
     }
 }

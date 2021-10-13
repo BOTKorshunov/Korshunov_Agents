@@ -50,8 +50,6 @@ namespace Korshunov_Agents.Windows
                 }
             }
 
-            files = imageFiles.ToArray();
-            Array.Sort(files);
             return files;
         }
         public Border CreateBorder()
@@ -88,7 +86,8 @@ namespace Korshunov_Agents.Windows
                     }
 
                     Image image = new Image();
-                    image.Source = new BitmapImage(new Uri(imageFiles[index], UriKind.Relative));
+                    FileInfo fileInfo = new FileInfo(imageFiles[index]);
+                    image.Source = new BitmapImage(new Uri(fileInfo.FullName));
                     imageSourcesList.Add(new ImageSources(image, imageFiles[index]));
 
                     Border brdImage = CreateBorder();

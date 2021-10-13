@@ -349,6 +349,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Agents.sql" />
+    <Resource Include="Agents\agent_131.png" />
     <Content Include="ModelAgents.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelAgents.edmx</DependentUpon>

@@ -56,19 +56,19 @@
 
                         <StackPanel Grid.Column="0" Style="{StaticResource spAgentData}">
                             <TextBlock Text="Название компании:"/>
-                            <TextBox/>
+                            <TextBox Name="tbTitle"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Style="{StaticResource spAgentData}">
                             <TextBlock Text="Тип компании:"/>
-                            <ComboBox/>
+                            <ComboBox Name="cbType"/>
                         </StackPanel>
                     </Grid>
 
                     <Grid Style="{StaticResource gAgentData}">
                         <StackPanel Style="{StaticResource spAgentData}">
                             <TextBlock Text="Адрес:"/>
-                            <TextBox/>
+                            <TextBox Name="tbAddress"/>
                         </StackPanel>
                     </Grid>
 
@@ -80,12 +80,12 @@
 
                         <StackPanel Grid.Column="0" Style="{StaticResource spAgentData}">
                             <TextBlock Text="ИНН:"/>
-                            <TextBox/>
+                            <TextBox Name="tbINN"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Style="{StaticResource spAgentData}">
                             <TextBlock Text="КПП:"/>
-                            <TextBox/>
+                            <TextBox Name="tbKPP"/>
                         </StackPanel>
                     </Grid>
 
@@ -97,26 +97,26 @@
 
                         <StackPanel Grid.Column="0" Style="{StaticResource spAgentData}">
                             <TextBlock Text="ФИО директора:"/>
-                            <TextBox/>
+                            <TextBox Name="tbDirectorName"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Style="{StaticResource spAgentData}">
                             <TextBlock Text="Телефон:"/>
-                            <TextBox/>
+                            <TextBox Name="tbPhone"/>
                         </StackPanel>
                     </Grid>
 
                     <Grid Style="{StaticResource gAgentData}">
                         <StackPanel Style="{StaticResource spAgentData}">
                             <TextBlock Text="E-mail:"/>
-                            <TextBox/>
+                            <TextBox Name="tbEmail"/>
                         </StackPanel>
                     </Grid>
 
                     <Grid Style="{StaticResource gAgentData}">
                         <StackPanel Style="{StaticResource spAgentData}">
                             <TextBlock Text="Приоритетность:"/>
-                            <TextBox/>
+                            <TextBox Name="tbPriority"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -146,7 +146,8 @@
                 </StackPanel>
                 
                 <Button Grid.Column="2" Content="Добавить >" FontSize="20"
-                        Style="{StaticResource secondColorBackground}"/>
+                        Style="{StaticResource secondColorBackground}"
+                        Name="btnAddAgent" Click="btnAddAgent_Click"/>
             </Grid>
         </Grid>
     </Border>

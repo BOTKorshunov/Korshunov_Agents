@@ -8,7 +8,7 @@
       d:DesignWidth="800"
       d:DesignHeight="450"
       Style="{StaticResource pageStyle}"
-      Title="AgentsPage">
+      Title="AgentsPage" Loaded="Page_Loaded">
     <Page.Resources>
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="20"/>
